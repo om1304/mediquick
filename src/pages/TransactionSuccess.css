@@ -1,0 +1,71 @@
+.transaction-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f9f5;
+}
+
+.success-content {
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.success-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.success-message {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.success-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.view-order-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.home-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.success-btn:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+
+    .success-content,
+    .failure-content {
+        padding: 20px;
+    }
+
+    .success-title,
+    .failure-title {
+        font-size: 1.5rem;
+    }
+
+    .success-btn,
+    .failure-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}

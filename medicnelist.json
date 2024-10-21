@@ -1,0 +1,366 @@
+[
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2136d"
+    },
+    "name": "Dolo 650",
+    "category": "Pain Reliever",
+    "price": 30,
+    "stock": 100,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F3606_3&w=3840&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2136e"
+    },
+    "name": "Ibuprofen 600mg",
+    "category": "Pain Reliever",
+    "price": 20,
+    "stock": 150,
+    "prescriptionRequired": false,
+    "imageUrl": "https://gpc.ge/_next/image?url=https%3A%2F%2Fs3-eu-central-1.amazonaws.com%2Fgpc.prod.storage%2Fuploads%2Fmedicament_image%2Fimage%2F38919%2Fimage.png&w=3840&q=100"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2136f"
+    },
+    "name": "Vitamin C",
+    "category": "Vitamin Supplement",
+    "price": 15,
+    "stock": 200,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F7223_1&w=640&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21371"
+    },
+    "name": "Aspirin 100mg",
+    "category": "Pain Reliever",
+    "price": 12,
+    "stock": 180,
+    "prescriptionRequired": false,
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfy8fpmaVcEYCI5s-70WoEGBC4kKiU7-EhFg&s"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21372"
+    },
+    "name": "Azithromycin 500mg",
+    "category": "Antibiotic",
+    "price": 50,
+    "stock": 80,
+    "prescriptionRequired": true,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F16800078816422e2c9b903e.png&w=3840&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21373"
+    },
+    "name": "Amoxicillin 500mg",
+    "category": "Antibiotic",
+    "price": 45,
+    "stock": 70,
+    "prescriptionRequired": true,
+    "imageUrl": "https://www.pharmacy2u.co.uk/_next/image?url=https%3A%2F%2Fcdn11.bigcommerce.com%2Fs-g585yu857h%2Fproducts%2F997%2Fimages%2F444%2Famoxicillin-500mg-caps_2__47489.1697015058.386.513__26258.1697109356.1280.1280.jpg%3Fc%3D1&w=1080&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21374"
+    },
+    "name": "Metformin 500mg",
+    "category": "Diabetes",
+    "price": 25,
+    "stock": 120,
+    "prescriptionRequired": true,
+    "imageUrl": "https://www.medpay.store/_next/image?url=https%3A%2F%2Fimages.medpay.in%2F_700%2Fmp242797_1.webp&w=1920&q=60"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21375"
+    },
+    "name": "Pantoprazole 40mg",
+    "category": "Gastrointestinal",
+    "price": 18,
+    "stock": 90,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F10194_3&w=3840&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21376"
+    },
+    "name": "Cetirizine 10mg",
+    "category": "Antihistamine",
+    "price": 8,
+    "stock": 220,
+    "prescriptionRequired": false,
+    "imageUrl": "https://pharmacy.shaqexpress.com/_next/image?url=https%3A%2F%2Fvendor.shaqexpress.com%2Fstorage%2F22265%2Fconversions%2FTafSR5OYYiyz8TxQeYUcQn0ftSDpvw-metaVEVWQS1DRVRSSVpJTkUtMTBtZy1UQUItMzBzLTEtc2NhbGVkLmpwZw%3D%3D--medium.png&w=3840&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21377"
+    },
+    "name": "Loratadine 10mg",
+    "category": "Antihistamine",
+    "price": 9,
+    "stock": 200,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F1686820879648ad80f60a44.png&w=640&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21378"
+    },
+    "name": "Calcium Carbonate 500mg",
+    "category": "Mineral Supplement",
+    "price": 5,
+    "stock": 300,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F1684931736646e049823837.png&w=256&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b21379"
+    },
+    "name": "Iron + Folic Acid",
+    "category": "Nutritional Supplement",
+    "price": 12,
+    "stock": 150,
+    "prescriptionRequired": false,
+    "imageUrl": "https://chemistsmart.com/_next/image?url=https%3A%2F%2Fbackend.chemistsmart.com%2Fstorage%2Fproducts%2Fdrug_image_Mzg5MDA3.jpg&w=640&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2137a"
+    },
+    "name": "Diclofenac 50mg",
+    "category": "Pain Reliever",
+    "price": 25,
+    "stock": 80,
+    "prescriptionRequired": true,
+    "imageUrl": "https://www.medpay.store/_next/image?url=https%3A%2F%2Fimages.medpay.in%2F_700%2Fmp164554_1.webp&w=1920&q=60"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2137b"
+    },
+    "name": "Levocetirizine 5mg",
+    "category": "Antihistamine",
+    "price": 10,
+    "stock": 200,
+    "prescriptionRequired": false,
+    "imageUrl": "https://www.medkart.in/_next/image?url=https%3A%2F%2Fd1s24u4ln0wd0i.cloudfront.net%2F1678446032640b0dd0bc1d7.png&w=3840&q=75"
+  },
+  {
+    "_id": {
+      "$oid": "66feeb140d98808231b2137c"
+    },
+    "name": "Atorvastatin 10mg",
+    "category": "Cholesterol Control",
+    "price": 30,
+    "stock": 110,
+    "prescriptionRequired": true,
+    "imageUrl": "https://www.google.com/imgres?q=atorvastatin%2010mg&imgurl=https%3A%2F%2Fmedicalmedium.com%2Fmedia%2F41714%2Fatman-anticholesterol.jpg"
+  },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2137d"
+      },
+      "name": "Omeprazole 20mg",
+      "category": "Gastrointestinal",
+      "price": 18,
+      "stock": 100,
+      "prescriptionRequired": false,
+      "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.indiamart.com%2Fproddetail%2Fomeprazole-capsules-20mg-21482346712.html&psig=AOvVaw2C4huett2L_06wjUCuSS7q&ust=1729599412046000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNCH-4e6n4kDFQAAAAAdAAAAABAE"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2137e"
+      },
+      "name": "Paracetamol 500mg",
+      "category": "Pain Reliever",
+      "price": 10,
+      "stock": 130,
+      "prescriptionRequired": false,
+      "imageUrl": "https://www.examplepharmacy.com/images/paracetamol.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2137f"
+      },
+      "name": "Hydrochlorothiazide 25mg",
+      "category": "Diuretic",
+      "price": 20,
+      "stock": 90,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.healingpharma.in%2Fproduct%2Fhctzide-25%2F&psig=AOvVaw1YPNCYjR_2iJHvCxE9btg1&ust=1729599500823000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCIDBtbK6n4kDFQAAAAAdAAAAABAE"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21380"
+      },
+      "name": "Clopidogrel 75mg",
+      "category": "Blood Thinner",
+      "price": 35,
+      "stock": 60,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpharmeasy.in%2Fonline-medicine-order%2Fclopidogrel-75-mg-tablet-10-medlife-pure-generics-2988126&psig=AOvVaw02ybRBCKHNvOzZsmykEr-O&ust=1729599541270000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMClkci6n4kDFQAAAAAdAAAAABAE"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21381"
+      },
+      "name": "Losartan 50mg",
+      "category": "Blood Pressure",
+      "price": 25,
+      "stock": 80,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fnestoronline.in%2FPrescription-Medicines%2FCARDIO-VASCULAR%2FLOSARTAN-POTASSIUM-TABLETS-IP-50-MG&psig=AOvVaw174gVlNQZKL2Du_dFmp_-T&ust=1729599821285000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiO7cm7n4kDFQAAAAAdAAAAABAE"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21382"
+      },
+      "name": "Lisinopril 10mg",
+      "category": "Blood Pressure",
+      "price": 28,
+      "stock": 90,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/lisinopril.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21383"
+      },
+      "name": "Metoprolol 50mg",
+      "category": "Blood Pressure",
+      "price": 32,
+      "stock": 75,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/metoprolol.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21384"
+      },
+      "name": "Simvastatin 20mg",
+      "category": "Cholesterol Control",
+      "price": 22,
+      "stock": 85,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/simvastatin.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21385"
+      },
+      "name": "Prednisone 10mg",
+      "category": "Anti-inflammatory",
+      "price": 15,
+      "stock": 100,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/prednisone.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21386"
+      },
+      "name": "Allopurinol 100mg",
+      "category": "Gout",
+      "price": 18,
+      "stock": 60,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/allopurinol.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21387"
+      },
+      "name": "Warfarin 5mg",
+      "category": "Blood Thinner",
+      "price": 40,
+      "stock": 50,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/warfarin.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21388"
+      },
+      "name": "Ranitidine 150mg",
+      "category": "Gastrointestinal",
+      "price": 12,
+      "stock": 140,
+      "prescriptionRequired": false,
+      "imageUrl": "https://www.examplepharmacy.com/images/ranitidine.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b21389"
+      },
+      "name": "Esomeprazole 40mg",
+      "category": "Gastrointestinal",
+      "price": 20,
+      "stock": 95,
+      "prescriptionRequired": false,
+      "imageUrl": "https://www.examplepharmacy.com/images/esomeprazole.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2138a"
+      },
+      "name": "Salbutamol 100mcg",
+      "category": "Asthma Inhaler",
+      "price": 35,
+      "stock": 50,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/salbutamol.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2138b"
+      },
+      "name": "Budesonide 200mcg",
+      "category": "Asthma Inhaler",
+      "price": 40,
+      "stock": 45,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/budesonide.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2138c"
+      },
+      "name": "Montelukast 10mg",
+      "category": "Asthma",
+      "price": 38,
+      "stock": 65,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/montelukast.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2138d"
+      },
+      "name": "Levothyroxine 50mcg",
+      "category": "Thyroid Hormone",
+      "price": 22,
+      "stock": 90,
+      "prescriptionRequired": true,
+      "imageUrl": "https://www.examplepharmacy.com/images/levothyroxine.jpg"
+    },
+    {
+      "_id": {
+        "$oid": "66feeb140d98808231b2138e"
+      },
+      "name": "Aspirin 75mg",
+      "category": "Blood Thinner",
+      "price": 18,
+      "stock": 120,
+      "prescriptionRequired": false,
+      "imageUrl": "https://www.examplepharmacy.com/images/aspirin.jpg"
+    }
+
+]

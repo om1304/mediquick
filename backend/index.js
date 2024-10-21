@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/cart", require("./routes/cart")); // Add cart route
 app.use("/api/medicines", require("./routes/medicines")); //Add medicine route
+app.use("/api/payment", require("./routes/payment")); //Add medicine route
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
