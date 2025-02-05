@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# 🏥 Medicine Delivery Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack **MERN** application for online medicine delivery, featuring **Stripe payment integration** and an **AI chatbot** powered by **Flask & NLP** to assist users with medicine-related queries.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌟 Features
 
-### `npm start`
+✅ **User Authentication** (Signup/Login)  
+✅ **Medicine Search & Filtering**  
+✅ **Cart Management**  
+✅ **Stripe Payment Gateway**  
+✅ **AI Chatbot for Medicine Queries** (Price, Dosage, Side Effects, etc.)  
+✅ **Order Management**  
+✅ **Responsive UI** (Light & Dark Mode)  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+### **Frontend:**
+- React.js
+- Redux (for state management)
+- Bootstrap / TailwindCSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Backend:**
+- Node.js & Express.js
+- MongoDB with Mongoose
+- JWT Authentication
 
-### `npm run build`
+### **AI Chatbot:**
+- Flask & Python
+- NLTK for NLP processing
+- FuzzyWuzzy for fuzzy matching
+- Flask-PyMongo (to fetch medicine details from MongoDB)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### **Payment Integration:**
+- Stripe API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Installation & Setup
 
-### `npm run eject`
+### **1️⃣ Clone the repository**
+```sh
+git clone https://github.com/your-username/medicine-delivery.git
+cd medicine-delivery
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **2️⃣ Backend Setup**
+```sh
+cd backend
+npm install  # Install dependencies
+npm start    # Start backend server
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **3️⃣ AI Chatbot Setup**
+```sh
+cd chatbot
+pip install -r requirements.txt  # Install Python dependencies
+python app.py  # Start Flask chatbot
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### **4️⃣ Frontend Setup**
+```sh
+cd frontend
+npm install  # Install dependencies
+npm start    # Start frontend
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🤖 AI Chatbot Functionality
+- Recognizes **user symptoms** and suggests medicines.
+- Provides **medicine details** (price, dosage, side effects, etc.).
+- Uses **fuzzy string matching** to detect medicine names with typos.
+- Stores **chat history** for context-aware responses.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### **Chat API Endpoint:**
+**POST** `/chat`
+```json
+{
+  "message": "What are the side effects of Paracetamol?"
+}
+```
+**Response:**
+```json
+{
+  "message": "The side effects of Paracetamol include nausea, dizziness, and liver damage.",
+  "medicines": []
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 💳 Stripe Payment Integration
+- Secure payment processing with **Stripe API**.
+- Stores **order details** and **payment history**.
+- Provides a smooth checkout experience.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## 📌 To-Do List
+- [ ] Implement **order tracking**.
+- [ ] Improve **chatbot accuracy** with ML models.
+- [ ] Add **voice-based assistant**.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 💡 Contributing
+1. Fork the repo 🍴
+2. Create a new branch `git checkout -b feature-name` 🌿
+3. Commit changes `git commit -m "Added new feature"` 📌
+4. Push `git push origin feature-name` 🚀
+5. Open a **Pull Request** 💬
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📞 Contact
+For any issues or feature requests, open an **issue** or reach out at:  
+📧 Email: ombelose421@gmail.com 
+💻 GitHub: [om1304](https://github.com/om1304)

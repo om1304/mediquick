@@ -28,8 +28,7 @@ const Cart = () => {
     .toFixed(2);
 
   const makePayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51QCQHxEyGniFItZRCzefK533usakcz4iCib6N8rsT9TiG7bO26u7gJqHbc5dsiofIhSnBURTwhnEKUSKt9NhVLMJ00DjPlTLdl");
+    const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
     // Ensure cartItems is defined before sending the request
     if (!cartItems || cartItems.length === 0) {

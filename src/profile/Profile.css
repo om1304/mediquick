@@ -1,0 +1,42 @@
+.breadcrumb {
+    margin: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.breadcrumb #home {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.breadcrumb #home:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: #6c757d;
+}
+
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1001;
+    /* Ensure it is on top */
+    animation: slide-in 0.3s forwards;
+}
+
+.close-alert {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}

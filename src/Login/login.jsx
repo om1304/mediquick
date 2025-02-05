@@ -1,18 +1,30 @@
 // LoginSignup.jsx
-import React, { useState } from 'react';
-import './login.css';
+import React, { useState } from "react";
+import "./login.css";
 
 const LoginSignup = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [address, setAddress] = useState({ street: '', city: '', postalCode: '', country: '' });
-  const [contactNumber, setContactNumber] = useState('');
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [resetemail, setResetEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState({
+    street: "",
+    city: "",
+    postalCode: "",
+    country: "",
+  });
+  const [contactNumber, setContactNumber] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   const toggleMode = () => {
     setIsSignUp(!isSignUp);
+    resetFields();
+  };
+
+  const toggleForgotPassword = () => {
+    setForgotPassword(!forgotPassword);
     resetFields();
   };
 
@@ -28,11 +40,11 @@ const LoginSignup = () => {
   };
 
   const resetFields = () => {
-    setUsername('');
-    setEmail('');
-    setPassword('');
-    setAddress({ street: '', city: '', postalCode: '', country: '' });
-    setContactNumber('');
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setAddress({ street: "", city: "", postalCode: "", country: "" });
+    setContactNumber("");
   };
 
   const validateLogin = () => {
@@ -51,7 +63,16 @@ const LoginSignup = () => {
   };
 
   const validateSignup = () => {
-    if (!username || !email || !password || !contactNumber || !address.street || !address.city || !address.postalCode || !address.country) {
+    if (
+      !username ||
+      !email ||
+      !password ||
+      !contactNumber ||
+      !address.street ||
+      !address.city ||
+      !address.postalCode ||
+      !address.country
+    ) {
       alert("Please fill in all fields.");
       return false;
     }
@@ -72,9 +93,9 @@ const LoginSignup = () => {
       try {
         const HOST = "http://localhost:5001";
         const response = await fetch(`${HOST}/api/auth/createuser`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             name: username,
@@ -82,7 +103,7 @@ const LoginSignup = () => {
             password,
             contactNumber,
             address,
-            role: 'user',
+            role: "user",
           }),
         });
 
@@ -92,7 +113,7 @@ const LoginSignup = () => {
           console.log("Sign up failed");
         } else {
           setAlertMessage(`Account successfully created.`);
-          setTimeout(() => setAlertMessage(""), 3000); 
+          setTimeout(() => setAlertMessage(""), 3000);
           localStorage.setItem("authToken", data.authToken);
           resetFields();
         }
@@ -124,16 +145,37 @@ const LoginSignup = () => {
 
         const data = await response.json();
         if (data.authToken) {
-          localStorage.setItem('authToken', data.authToken);
+          localStorage.setItem("authToken", data.authToken);
           setAlertMessage(`Successfully logged in.`);
-          setTimeout(() => setAlertMessage(""), 3000); 
+          setTimeout(() => setAlertMessage(""), 3000);
         } else {
           setAlertMessage(`Failed to log in`);
-          setTimeout(() => setAlertMessage(""), 3000); 
+          setTimeout(() => setAlertMessage(""), 3000);
         }
       } catch (error) {
         console.log("Could not login", error);
       }
+    }
+  };
+
+  const handleForgotPasswordSubmit = async (e) => {
+    e.preventDefault();
+    const HOST = "http://localhost:5001";
+    try {
+      const response = await fetch(`${HOST}/api/auth/forgot-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: resetemail }),
+      });
+      if (response.ok) {
+        setAlertMessage("Password reset link sent to your email.");
+      } else {
+        setAlertMessage("Error sending reset link.");
+      }
+      //setForgotPassword(false);
+      setTimeout(() => setAlertMessage(""), 3000);
+    } catch (error) {
+      console.error("Error sending forgot password request:", error);
     }
   };
 
@@ -167,6 +209,11 @@ const LoginSignup = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        {!isSignUp && (
+          <p className="forgot-password-link" onClick={toggleForgotPassword}>
+            Forgot Password?
+          </p>
+        )}
         {isSignUp && (
           <>
             <input
@@ -216,6 +263,35 @@ const LoginSignup = () => {
               required
             />
           </>
+        )}
+
+        {/*Forgot password modal*/}
+        {forgotPassword && (
+          <div className="modal-overlay">
+            <div className="modal-content">
+              <h3 className="title">Forgot Password</h3>
+              <button className="close" onClick={toggleForgotPassword}>
+                ×
+              </button>
+              <form className="form">
+                <input
+                  type="email"
+                  className="input"
+                  placeholder="Enter your email"
+                  value={resetemail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={handleForgotPasswordSubmit}
+                  className="form-btn"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
         )}
         <button type="submit" className="form-btn">
           {isSignUp ? "Sign Up" : "Log in"}

@@ -6,7 +6,6 @@ const stripe = require("stripe")(stripeSecret);
 
 exports.paymentCheckout = async (req, res) => {
   try {
-    console.log("Incoming Request Body:", req.body); // Log the request body
     const { cartItems } = req.body;
 
     // Ensure cartItems is provided
