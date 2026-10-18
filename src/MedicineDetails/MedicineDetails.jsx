@@ -5,7 +5,7 @@ import "./MedicineDetails.css";
 import { CartContext } from "../Cart/CartContext";
 
 // Deployed backend base URL
-const HOST = "https://mediquick-backend-yizx.onrender.com";
+const HOST = "http://localhost:5001";
 
 const MedicineDetails = () => {
   const { id } = useParams();

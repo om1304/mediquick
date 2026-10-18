@@ -14,7 +14,7 @@ import Tooltip from "@mui/material/Tooltip";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 // Central backend base URL
-const HOST = "https://mediquick-backend-yizx.onrender.com";
+const HOST = "http://localhost:5001";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -325,13 +325,6 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link
-                  to="/cart"
-                  className="text-gray-700 hover:text-green-500 p-2 rounded-full hover:bg-gray-100"
-                >
-                  <ShoppingCart className="h-7 w-7" />
-                </Link>
-
                 <Box
                   sx={{
                     display: "flex",
@@ -344,7 +337,9 @@ const Navbar = () => {
                       onClick={handleAvatarClick}
                       size="small"
                       sx={{ ml: 1 }}
-                      aria-controls={openAccountMenu ? "account-menu" : undefined}
+                      aria-controls={
+                        openAccountMenu ? "account-menu" : undefined
+                      }
                       aria-haspopup="true"
                       aria-expanded={openAccountMenu ? "true" : undefined}
                     >
@@ -372,8 +367,7 @@ const Navbar = () => {
                         elevation: 0,
                         sx: {
                           overflow: "visible",
-                          filter:
-                            "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                          filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                           mt: 1.5,
                           "& .MuiAvatar-root": {
                             width: 32,
@@ -390,8 +384,7 @@ const Navbar = () => {
                             width: 10,
                             height: 10,
                             bgcolor: "background.paper",
-                            transform:
-                              "translateY(-50%) rotate(45deg)",
+                            transform: "translateY(-50%) rotate(45deg)",
                             zIndex: 0,
                           },
                         },
@@ -426,6 +419,13 @@ const Navbar = () => {
               </>
             )}
 
+            <Link
+              to="/cart"
+              className="text-gray-700 hover:text-green-500 p-2 rounded-full hover:bg-gray-100"
+            >
+              <ShoppingCart className="h-7 w-7" />
+            </Link>
+            
             {/* Theme toggle button */}
             <button
               type="button"
@@ -520,13 +520,6 @@ const Navbar = () => {
             ) : (
               <>
                 <Link
-                  to="/cart"
-                  onClick={toggleMenu}
-                  className="text-gray-700 hover:text-green-500 text-lg font-medium"
-                >
-                  Cart
-                </Link>
-                <Link
                   to="/profile"
                   onClick={toggleMenu}
                   className="text-gray-700 hover:text-green-500 text-lg font-medium"
@@ -544,6 +537,14 @@ const Navbar = () => {
                 </button>
               </>
             )}
+
+            <Link
+              to="/cart"
+              onClick={toggleMenu}
+              className="text-gray-700 hover:text-green-500 text-lg font-medium"
+            >
+              Cart
+            </Link>
 
             <button
               onClick={toggleTheme}

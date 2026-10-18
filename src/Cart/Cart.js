@@ -1,10 +1,5 @@
 // src/Cart/cart.jsx
-import React, {
-  useEffect,
-  useContext,
-  useCallback,
-  useState,
-} from "react";
+import React, { useEffect, useContext, useCallback, useState } from "react";
 import { CartContext } from "../Cart/CartContext";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
@@ -13,6 +8,7 @@ import "./cart.css";
 const Cart = () => {
   const {
     cartItems,
+    medicineDetails,
     removeFromCart,
     clearCart,
     fetchCartItems,
@@ -21,13 +17,13 @@ const Cart = () => {
   const navigate = useNavigate();
 
   // Deployed Node backend URL
-  const HOST = "https://mediquick-backend-yizx.onrender.com";
+  const HOST = "http://localhost:5001";
 
   // ---- USER ADDRESS STATE ----
   const [userAddress, setUserAddress] = useState(null);
   const [isAddressLoading, setIsAddressLoading] = useState(true);
 
-  // ---- PRICE BREAKDOWN STATE (fix flicker) ----
+  // ---- PRICE BREAKDOWN STATE ----
   const [priceBreakdown, setPriceBreakdown] = useState({
     subtotal: 0,
     deliveryFee: 0,
@@ -50,26 +46,26 @@ const Cart = () => {
     fetchCartItems();
   }, [fetchCartItems]);
 
-  // ---- FETCH CART + ADDRESS (no flicker) ----
+  // ---- FETCH CART + ADDRESS ----
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
+
+    // Always fetch cart items (CartContext handles guest vs logged-in automatically)
+    stableFetchCartItems();
+
+    // If user is not logged in, skip fetching user address
     if (!token) {
-      alert("Please log in to view your cart.");
-      navigate("/");
+      setIsAddressLoading(false);
+      setUserAddress(null);
       return;
     }
 
-    // fetch cart items
-    stableFetchCartItems();
-
-    // fetch user address only once
+    // fetch user address only once for logged-in users
     let isMounted = true;
 
     const fetchUserAddress = async () => {
       try {
-        if (!userAddress) {
-          setIsAddressLoading(true);
-        }
+        setIsAddressLoading(true);
 
         const res = await fetch(`${HOST}/api/auth/getuser`, {
           method: "GET",
@@ -86,7 +82,6 @@ const Cart = () => {
         }
 
         const user = await res.json();
-        // user.address is: { street, city, postalCode, country }
         if (isMounted) {
           if (user && user.address) {
             setUserAddress(user.address);
@@ -107,17 +102,19 @@ const Cart = () => {
     return () => {
       isMounted = false;
     };
-    // only depend on stableFetchCartItems so this runs once per mount
-  }, [stableFetchCartItems, navigate]);
+  }, [stableFetchCartItems, HOST]);
 
-  // ----- recompute fees ONLY when cartItems change -----
+  // ----- recompute fees ONLY when cartItems or medicineDetails change -----
   useEffect(() => {
     const rawSubtotal = cartItems.reduce((total, item) => {
-      const price = item.price || 0;
+      const medicine = medicineDetails.find(
+        (med) =>
+          med._id === item.medicineId || med._id === item.medicineId?._id,
+      );
+      const price = medicine ? medicine.price : 0;
       return total + price * item.quantity;
     }, 0);
 
-    // use the same baseDeliveryFee for the whole session
     let fee = 0;
     if (rawSubtotal > 0) {
       fee = baseDeliveryFee;
@@ -129,9 +126,7 @@ const Cart = () => {
     const total = rawSubtotal + fee + gst;
 
     const savings =
-      rawSubtotal === 0
-        ? ""
-        : "Inclusive of GST @ 5% on medicines.";
+      rawSubtotal === 0 ? "" : "Inclusive of GST @ 5% on medicines.";
 
     setPriceBreakdown({
       subtotal: +rawSubtotal.toFixed(2),
@@ -140,13 +135,13 @@ const Cart = () => {
       totalPayable: +total.toFixed(2),
       savingsText: savings,
     });
-  }, [cartItems, baseDeliveryFee]);
+  }, [cartItems, medicineDetails, baseDeliveryFee]);
 
   const makePayment = async () => {
     const token = localStorage.getItem("auth-token");
     if (!token) {
-      alert("Please log in to proceed with checkout.");
-      navigate("/");
+      alert("Please log in or register to proceed with checkout.");
+      // Optional: open your login modal here if applicable
       return;
     }
 
@@ -156,7 +151,7 @@ const Cart = () => {
     }
 
     const stripe = await loadStripe(
-      "pk_test_51ShmMZCwIRPtHAEdT6ZSUZqXtYJwZNebu0jl8Ij4cWmGIXzUARbiy6O4yy6YGdKLwseRvDqQJULbev9cRqKrAJQv00mMK5xjQf"
+      "pk_test_51ShmMZCwIRPtHAEdT6ZSUZqXtYJwZNebu0jl8Ij4cWmGIXzUARbiy6O4yy6YGdKLwseRvDqQJULbev9cRqKrAJQv00mMK5xjQf",
     );
 
     const body = {
@@ -167,7 +162,6 @@ const Cart = () => {
         gstAmount,
         totalPayable,
       },
-      // optional: send address too, if your backend needs it
       shippingAddress: userAddress || null,
     };
 
@@ -183,7 +177,7 @@ const Cart = () => {
           method: "POST",
           headers,
           body: JSON.stringify(body),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -215,18 +209,17 @@ const Cart = () => {
     }
   };
 
-  // helper to format address nicely
   const renderAddressLine = () => {
-    // only show "Loading" when we truly have no address yet
+    const token = localStorage.getItem("auth-token");
+    if (!token) return "Log in to add delivery address";
+
     if (isAddressLoading && !userAddress) return "Loading address...";
 
     if (userAddress) {
       const { street, city, postalCode, country } = userAddress;
-      // keep it short for cart: street + city + pin
-      return `${street}, ${city} - ${postalCode}, ${country}`;
+      return `${street}, ${city} ${postalCode}, ${country}`;
     }
 
-    // not loading but no address present
     return "Add delivery address";
   };
 
@@ -252,45 +245,56 @@ const Cart = () => {
           ) : (
             <div>
               <ul className="cart-items">
-                {cartItems.map((item, index) => (
-                  <li key={index} className="cart-item">
-                    <img
-                      src={item.imageUrl || "/path-to-fallback-image.jpg"}
-                      alt={item.name || "Medicine"}
-                    />
-                    <div className="item-details">
-                      <div className="item-name">{item.name}</div>
-                      <div className="item-price-row">
-                        <span className="item-price">
-                          ₹{item.price} × {item.quantity}
-                        </span>
+                {cartItems.map((item, index) => {
+                  const medicine =
+                    medicineDetails.find(
+                      (med) =>
+                        med._id === item.medicineId ||
+                        med._id === item.medicineId?._id,
+                    ) || {};
+
+                  return (
+                    <li key={item.medicineId || index} className="cart-item">
+                      <img
+                        src={medicine.imageUrl || "/path-to-fallback-image.jpg"}
+                        alt={medicine.name || "Medicine"}
+                      />
+                      <div className="item-details">
+                        <div className="item-name">
+                          {medicine.name || "Loading medicine..."}
+                        </div>
+                        <div className="item-price-row">
+                          <span className="item-price">
+                            ₹{medicine.price || 0} × {item.quantity}
+                          </span>
+                        </div>
+                        <div className="quantity-controls">
+                          <button
+                            onClick={() =>
+                              updateCart(item.medicineId, item.quantity - 1)
+                            }
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button
+                            onClick={() =>
+                              updateCart(item.medicineId, item.quantity + 1)
+                            }
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
-                      <div className="quantity-controls">
-                        <button
-                          onClick={() =>
-                            updateCart(item.medicineId, item.quantity - 1)
-                          }
-                        >
-                          -
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={() =>
-                            updateCart(item.medicineId, item.quantity + 1)
-                          }
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      className="remove-button"
-                      onClick={() => removeFromCart(item.medicineId)}
-                    >
-                      Remove
-                    </button>
-                  </li>
-                ))}
+                      <button
+                        className="remove-button"
+                        onClick={() => removeFromCart(item.medicineId)}
+                      >
+                        Remove
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
               <button className="clear-cart-button" onClick={clearCart}>
                 Clear Cart
@@ -343,8 +347,8 @@ const Cart = () => {
             </button>
 
             <p className="summary-disclaimer">
-              This is a simulated breakdown for demo purposes. Actual taxes
-              and delivery fees may vary as per government regulations.
+              This is a simulated breakdown for demo purposes. Actual taxes and
+              delivery fees may vary as per government regulations.
             </p>
           </div>
         </div>

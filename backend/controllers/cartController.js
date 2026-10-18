@@ -2,11 +2,11 @@
 const User = require("../models/User");
 const Medicine = require("../models/Medicine");
 
-// GET: get cart items
+// GET: get cart items with populated medicine details
 exports.getCartItems = async (req, res) => {
   try {
     const userId = req.user.id;
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).populate("cart.items.medicineId");
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
@@ -21,41 +21,39 @@ exports.getCartItems = async (req, res) => {
 exports.addToCart = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { medicineId, quantity } = req.body;
+    const { medicineId, quantity = 1 } = req.body;
 
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
 
+    // Verify medicine exists in catalog
     const medicine = await Medicine.findById(medicineId);
     if (!medicine) {
       return res.status(404).json({ message: "Medicine not found." });
     }
 
     const itemIndex = user.cart.items.findIndex(
-      (item) => item.medicineId.toString() === medicineId
+      (item) => item.medicineId.toString() === medicineId,
     );
 
     if (itemIndex >= 0) {
-      // already in cart -> increase quantity
-      user.cart.items[itemIndex].quantity += quantity;
+      // Already in cart -> increase quantity
+      user.cart.items[itemIndex].quantity += Number(quantity);
     } else {
-      // new item
+      // New item -> store only ID and quantity
       user.cart.items.push({
         medicineId,
-        name: medicine.name,
-        price: medicine.price,
-        imageUrl: medicine.imageUrl,
-        prescriptionRequired: medicine.prescriptionRequired,
-        quantity,
+        quantity: Number(quantity),
       });
     }
 
-    // update total
-    user.cart.totalAmount += medicine.price * quantity;
-
     await user.save();
+
+    // Populate before sending back to frontend
+    await user.populate("cart.items.medicineId");
+
     return res.json({ message: "Item added to cart", cart: user.cart });
   } catch (error) {
     console.error("Error adding to cart:", error.message);
@@ -75,23 +73,21 @@ exports.updateCart = async (req, res) => {
     }
 
     const itemIndex = user.cart.items.findIndex(
-      (item) => item.medicineId.toString() === medicineId
+      (item) => item.medicineId.toString() === medicineId,
     );
     if (itemIndex < 0) {
       return res.status(404).json({ message: "Item not found in cart." });
     }
 
-    const medicine = await Medicine.findById(medicineId);
-    if (!medicine) {
-      return res.status(404).json({ message: "Medicine not found." });
+    if (quantity <= 0) {
+      user.cart.items.splice(itemIndex, 1);
+    } else {
+      user.cart.items[itemIndex].quantity = Number(quantity);
     }
 
-    const previousQuantity = user.cart.items[itemIndex].quantity;
-    user.cart.totalAmount += (quantity - previousQuantity) * medicine.price;
-
-    user.cart.items[itemIndex].quantity = quantity;
-
     await user.save();
+    await user.populate("cart.items.medicineId");
+
     return res.json({ message: "Cart updated", cart: user.cart });
   } catch (error) {
     console.error("Error updating cart:", error.message);
@@ -111,23 +107,17 @@ exports.deleteFromCart = async (req, res) => {
     }
 
     const itemIndex = user.cart.items.findIndex(
-      (item) => item.medicineId.toString() === medicineId
+      (item) => item.medicineId.toString() === medicineId,
     );
     if (itemIndex < 0) {
       return res.status(404).json({ message: "Item not found in cart." });
     }
 
-    const medicine = await Medicine.findById(medicineId);
-    if (!medicine) {
-      return res.status(404).json({ message: "Medicine not found." });
-    }
-
-    user.cart.totalAmount -=
-      medicine.price * user.cart.items[itemIndex].quantity;
-
     user.cart.items.splice(itemIndex, 1);
 
     await user.save();
+    await user.populate("cart.items.medicineId");
+
     return res.json({ message: "Item removed from cart", cart: user.cart });
   } catch (error) {
     console.error("Error deleting item from cart:", error.message);
@@ -146,7 +136,6 @@ exports.clearCart = async (req, res) => {
     }
 
     user.cart.items = [];
-    user.cart.totalAmount = 0;
 
     await user.save();
     return res.json({ message: "Cart cleared successfully", cart: user.cart });

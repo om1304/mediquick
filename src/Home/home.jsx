@@ -9,7 +9,7 @@ import four from "./del.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Deployed backend base URL
-const HOST = "https://mediquick-backend-yizx.onrender.com";
+const HOST = "http://localhost:5001";
 
 const Home = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const Home = () => {
   const searchWrapperRef = useRef(null);
 
   const getMedicines = async () => {
-    const URL = `${HOST}/api/medicines`;
+    const URL = `${HOST}/api/medicines/`;
     try {
       const response = await fetch(URL);
       if (!response.ok) {
